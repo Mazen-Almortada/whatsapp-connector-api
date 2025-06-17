@@ -1,0 +1,31 @@
+{
+  "name": "whatsapp-connector-api",
+  "version": "4.1.1",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts"
+  },
+  "author": {
+    "name": "apopedro",
+    "email": "abobedro90@gmail.com"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "dotenv": "^16.0.0",
+    "hono": "^4.6.13",
+    "moment": "^2.29.4",
+    "qrcode": "^1.5.1",
+    "tsx": "^4.19.2",
+    "wa-multi-session": "^3.7.3",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.22.0",
+    "@types/node": "^22.10.1",
+    "@types/qrcode": "^1.5.5",
+    "eslint": "^8.57.1",
+    "globals": "^16.0.0",
+    "typescript-eslint": "^8.26.0"
+  }
+}

@@ -24,7 +24,6 @@ export const status = async (c: Context) => {
     const state = FrappeState.syncStateWithLibrary(sessionId);
 
     return c.json({
-        siteId: c.get('siteId'),
         sessionId: sessionId,
         status: state.status,
         qr_code: state.status === 'QR_READY' ? state.qrCodeDataUrl : null,

@@ -5,16 +5,16 @@ import * as FrappeController from '../controllers/frappe.controller';
 
 
 export const createFrappeAPIRouter = () => {
-    const app = new Hono<{ Variables: { siteId: string; sessionId: string } }>();
+    const app = new Hono<{ Variables: { sessionId: string } }>();
 
-    app.use('/:siteId/:sessionId/*', async (c, next) => {
-        const siteId = c.req.param('siteId');
+    app.use('/:sessionId/*', async (c, next) => {
+        
         const sessionId = c.req.param('sessionId');
 
-        if (!siteId || !sessionId) {
-            throw new HTTPException(400, { message: 'Both siteId and sessionId path parameters are required.' });
+        if (!sessionId) {
+            throw new HTTPException(400, { message: 'sessionId path parameters are required.' });
         }
-        c.set('siteId', siteId);
+       
         c.set('sessionId', sessionId);
         await next();
     });
@@ -22,10 +22,10 @@ export const createFrappeAPIRouter = () => {
     const frappeKeyAuth = createFrappeApiKeyMiddleware();
     app.use('*', frappeKeyAuth);
     
-    app.get('/:siteId/:sessionId/initiate', FrappeController.initiate);
-    app.get('/:siteId/:sessionId/status', FrappeController.status);
-    app.post('/:siteId/:sessionId/disconnect', FrappeController.disconnect);
-    app.post('/:siteId/:sessionId/send', FrappeController.sendMessage);
+    app.get('/:sessionId/initiate', FrappeController.initiate);
+    app.get('/:sessionId/status', FrappeController.status);
+    app.post('/:sessionId/disconnect', FrappeController.disconnect);
+    app.post('/:sessionId/send', FrappeController.sendMessage);
 
     return app;
 };
